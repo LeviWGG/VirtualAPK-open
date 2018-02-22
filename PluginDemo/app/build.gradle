@@ -1,7 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.didi.virtualapk.plugin'
 
 android {
     compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+
     defaultConfig {
         applicationId "app.main.wangliwei.plugindemo"
         minSdkVersion 22
@@ -19,10 +23,22 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:0.5'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    //virtualapk
+    compile 'com.didi.virtualapk:core:0.9.1'
+    //butterknife
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}
+
+virtualApk {
+    packageId = 0x8f // the package id of Resources.
+    targetHost = '../HostDemo/app' // the path of application module in host project.
+    applyHostMapping = true //optional, default value: true.
 }
