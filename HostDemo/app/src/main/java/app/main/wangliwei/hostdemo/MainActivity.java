@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         Intent intent = new Intent();
-        intent.setClassName("app.main.wangliwei.plugindemo","app.main.wangliwei.plugindemo.MainActivity");
+        intent.setClassName("app.main.wangliwei.plugindemo","app.main.wangliwei.plugindemo.PluginActivity");
         startActivity(intent);
     }
 
